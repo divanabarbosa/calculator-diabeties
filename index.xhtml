@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>CALCULADORA DO CONTEÚDO TOTAL DE ÁGUA CORPÓREA</title>
+        <link rel="stylesheet" href="resources/css/estilo.css"/>
+    </h:head>
+    <h:body>
+        <h:outputText value ="CALCULADORA DO CONTEÚDO TOTAL DE ÁGUA CORPÓREA" id ="TITULO"/>
+        <h:form id="form">
+            <h:panelGrid columns ="2">
+                <h:outputText value ="Altura (cm):"/>
+                <p:inputText value="#{calculadoraBean.calculadora.altura}" onfocus="false"/>
+
+                <h:outputText value ="Idade:" />
+                <p:inputText value="#{calculadoraBean.calculadora.idade}" onfocus="false"/>
+
+                <h:outputText value ="Peso (Kg):" />
+                <p:inputText value="#{calculadoraBean.calculadora.peso}" onfocus="false"/>
+
+                <h:outputText value ="Sexo:"/>
+                <p:selectOneRadio value="#{calculadoraBean.calculadora.sexo}" >
+                    <f:selectItem itemValue="0" itemLabel="Feminino"/>
+                    <f:selectItem itemValue="1" itemLabel="Masculino"/>
+                </p:selectOneRadio>
+
+                <h:outputText value ="Diabetes:"/>
+                <p:selectOneRadio value="#{calculadoraBean.calculadora.diabetes}">
+                    <f:selectItem itemValue="0" itemLabel="Não"/>
+                    <f:selectItem itemValue="1" itemLabel="Sim"/>
+                </p:selectOneRadio>
+
+                <p:commandButton value="Calcular" ajax="false" action="#{calculadoraBean.Calcular()}"/>
+                <p:commandButton value="Redefinir" action="#{calculadoraBean.Reset()}" update="@form" ajax="false" ></p:commandButton>
+
+                <h:outputText value="Cálculo do total - escolha do método:"/>
+                <p:selectOneMenu value="#{calculadoraBean.calculadora.escolhas}" >
+
+                    <f:selectItem itemValue="1" itemLabel="Watson formula"/>
+                    <f:selectItem itemValue="2" itemLabel="Hume-Weyer formula"/>
+                    <f:selectItem itemValue="3" itemLabel="Bioeletrical Impedance"/>
+                    <f:selectItem itemValue="4" itemLabel="Mellits-Cheek formula (crianças)"/>
+                    <f:selectItem itemValue="5" itemLabel="0.6*peso"/>
+
+                </p:selectOneMenu>
+                <br/><br/><br/>
+                <p:inputText value="#{calculadoraBean.calculadora.resultado}" onfocus="false"/>
+            </h:panelGrid>
+
+        </h:form>
+    </h:body>
+</html>
+
